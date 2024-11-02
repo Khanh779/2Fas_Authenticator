@@ -50,35 +50,35 @@ namespace _2Fas_Authenticator.AutMode
 
 
 
-        private static byte[] Base32Decode(string base32)
-        {
-            const string base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-            int bits = 0;
-            int value = 0;
-            byte[] result = new byte[(base32.Length * 5 + 7) / 8];
-            int index = 0;
+        //private static byte[] Base32Decode(string base32)
+        //{
+        //    const string base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+        //    int bits = 0;
+        //    int value = 0;
+        //    byte[] result = new byte[(base32.Length * 5 + 7) / 8];
+        //    int index = 0;
 
-            foreach (char c in base32)
-            {
-                if (c == '=')
-                    break;
+        //    foreach (char c in base32)
+        //    {
+        //        if (c == '=')
+        //            break;
 
-                int b = base32Chars.IndexOf(c);
-                if (b < 0)
-                    throw new FormatException($"Invalid base32 character: {c}");
+        //        int b = base32Chars.IndexOf(c);
+        //        if (b < 0)
+        //            throw new FormatException($"Invalid base32 character: {c}");
 
-                value = (value << 5) | b;
-                bits += 5;
+        //        value = (value << 5) | b;
+        //        bits += 5;
 
-                if (bits >= 8)
-                {
-                    bits -= 8;
-                    result[index++] = (byte)(value >> bits);
-                }
-            }
+        //        if (bits >= 8)
+        //        {
+        //            bits -= 8;
+        //            result[index++] = (byte)(value >> bits);
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
 
 
