@@ -21,6 +21,7 @@ namespace _2Fas_Authenticator
             InitializeComponent();
 
             textBoxSecretKey.Text = "ICJL VN3P 5DZI L47A GSH4 JRNC LEDN NMDZ";
+            textBoxSecretKey.Text = "12345678af";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -43,6 +44,7 @@ namespace _2Fas_Authenticator
                 comboBox1.SelectedIndex == 1 ? Hotp_Auth.GenerateHotp(secretKey, hotpCounter++) :
                 comboBox1.SelectedIndex == 2 ? Steam_Auth.GenerateSTEAMotp(secretKey) : 
                 comboBox1.SelectedIndex == 3 ?  Yandex_Auth.GenerateYandexOtp(secretKey):
+                Motp_Auth.GenerateMotp(secretKey);
 
             txt_counter.Text = hotpCounter.ToString();
             textBoxOtp.Text = otp; // Hiển thị mã OTP trong textBoxOtp

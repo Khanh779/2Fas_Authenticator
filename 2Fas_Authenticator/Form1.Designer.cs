@@ -37,11 +37,11 @@
             this.buttonGenerateOtp = new System.Windows.Forms.Button();
             this.buttonVerify = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_counter = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +83,7 @@
             this.labelOtp.Location = new System.Drawing.Point(37, 96);
             this.labelOtp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOtp.Name = "labelOtp";
-            this.labelOtp.Size = new System.Drawing.Size(31, 13);
+            this.labelOtp.Size = new System.Drawing.Size(30, 13);
             this.labelOtp.TabIndex = 3;
             this.labelOtp.Text = "OTP:";
             // 
@@ -134,16 +134,6 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(12, 210);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(537, 91);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -169,7 +159,7 @@
             this.label2.Location = new System.Drawing.Point(37, 131);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "Type:";
             // 
@@ -181,6 +171,16 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(166, 21);
             this.comboBox1.TabIndex = 14;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(12, 210);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(537, 91);
+            this.richTextBox1.TabIndex = 8;
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // Form1
             // 
@@ -223,10 +223,10 @@
         private System.Windows.Forms.Button buttonGenerateOtp;
         private System.Windows.Forms.Button buttonVerify;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_counter;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79DDCAA2-6961-4CAC-B896-2266C5FFE70F}</ProjectGuid>
+    <ProjectGuid>{9471776B-789B-453B-BD28-B2D8083A533F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>_2Fas_Authenticator</RootNamespace>
-    <AssemblyName>2Fas_Authenticator</AssemblyName>
+    <RootNamespace>Stratum</RootNamespace>
+    <AssemblyName>Stratum</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,11 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="QRCoder, Version=1.6.0.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
-      <HintPath>..\packages\QRCoder.1.6.0\lib\net40\QRCoder.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,27 +44,26 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutMode\Motp_Auth.cs" />
-    <Compile Include="AutMode\Steam_Auth.cs" />
-    <Compile Include="AutMode\Yandex_Auth.cs" />
-    <Compile Include="Base32Encoding.cs" />
-    <Compile Include="Enums\AuthenticatorType.cs" />
+    <Compile Include="Core\Generator\GenerationMethod.cs" />
+    <Compile Include="Core\Generator\HashAlgorithm.cs" />
+    <Compile Include="Core\Generator\HmacOtp.cs" />
+    <Compile Include="Core\Generator\Hotp.cs" />
+    <Compile Include="Core\Generator\IGenerator.cs" />
+    <Compile Include="Core\Generator\MobileOtp.cs" />
+    <Compile Include="Core\Generator\SteamOtp.cs" />
+    <Compile Include="Core\Generator\Totp.cs" />
+    <Compile Include="Core\Generator\YandexOtp.cs" />
+    <Compile Include="Core\Util\HashUtil.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AutMode\Hotp_Auth.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AutMode\Totp_Auth.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -79,7 +73,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
