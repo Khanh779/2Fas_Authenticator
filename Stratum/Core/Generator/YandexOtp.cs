@@ -22,18 +22,12 @@ namespace Stratum.Core.Generator
         {
             var secretBytes = Encoding.UTF8.GetBytes(secret + pin);
 
-            // Tạo SHA256 và tính toán mã băm
-            byte[] key;
+            byte[] key;        // Tạo SHA256 và tính toán mã băm
             using (SHA256 sha256 = SHA256.Create())
-            {
                 key = sha256.ComputeHash(secretBytes);
-            }
 
-            // Loại bỏ byte đầu tiên nếu nó bằng 0
-            if (key[0] == 0)
-            {
+            if (key[0] == 0)    // Loại bỏ byte đầu tiên nếu nó bằng 0
                 key = key.Skip(1).ToArray();
-            }
 
             _hmac = new HMACSHA256(key);
         }
@@ -44,7 +38,7 @@ namespace Stratum.Core.Generator
             var offset = hash.Last() & 15;
             var bytes = hash.Skip(offset).Take(8).ToArray();
 
-            long result = 0;    // Chuyển đổi mảng 8 byte thành long với big-endian
+            long result = 0;   
             for (int i = 0; i < bytes.Length; i++) result = (result << 8) | bytes[i];
 
             return result & long.MaxValue;
