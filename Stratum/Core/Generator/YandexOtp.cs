@@ -4,6 +4,7 @@
 using Stratum.Core.Util;
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -38,10 +39,10 @@ namespace Stratum.Core.Generator
             var offset = hash.Last() & 15;
             var bytes = hash.Skip(offset).Take(8).ToArray();
 
-            long result = 0;   
-            for (int i = 0; i < bytes.Length; i++) result = (result << 8) | bytes[i];
+            //long result = 0;   
+            //for (int i = 0; i < bytes.Length; i++) result = (result << 8) | bytes[i];
 
-            return result & long.MaxValue;
+            return BytesUtil.ReadInt64BigEndian(bytes) & long.MaxValue;
         }
 
         public void Dispose()

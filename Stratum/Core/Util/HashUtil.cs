@@ -27,39 +27,87 @@ namespace Stratum.Core.Util
             }
         }
 
-        public static string Truncate(this string input, int length)
+        //public static string Truncate(this string input, int length)
+        //{
+        //    return input.Length > length ? input.Substring(0, length) : input;
+        //}
+
+        public static string Truncate(this string value, int maxLength)
         {
-            return input.Length > length ? input.Substring(0, length) : input;
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
         }
 
-        public static byte[] Base32Decode(string base32)
+
+        public static byte[] Base32Decode(string input)
         {
-            const string base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-            int bits = 0;
-            int value = 0;
-            byte[] result = new byte[(base32.Length * 5 + 7) / 8];
-            int index = 0;
-
-            foreach (char c in base32)
+            if (string.IsNullOrEmpty(input))
             {
-                if (c == '=')
-                    break;
+                throw new ArgumentNullException("input");
+            }
 
-                int b = base32Chars.IndexOf(c);
-                if (b < 0)
-                    throw new FormatException($"Invalid base32 character: {c}");
+            input = input.TrimEnd('='); //remove padding characters
+            int byteCount = input.Length * 5 / 8; //this must be TRUNCATED
+            byte[] returnArray = new byte[byteCount];
 
-                value = (value << 5) | b;
-                bits += 5;
+            byte curByte = 0, bitsRemaining = 8;
+            int mask = 0, arrayIndex = 0;
 
-                if (bits >= 8)
+            foreach (char c in input)
+            {
+                int cValue = CharToValue(c);
+
+                if (bitsRemaining > 5)
                 {
-                    bits -= 8;
-                    result[index++] = (byte)(value >> bits);
+                    mask = cValue << (bitsRemaining - 5);
+                    curByte = (byte)(curByte | mask);
+                    bitsRemaining -= 5;
+                }
+                else
+                {
+                    mask = cValue >> (5 - bitsRemaining);
+                    curByte = (byte)(curByte | mask);
+                    returnArray[arrayIndex++] = curByte;
+                    curByte = (byte)(cValue << (3 + bitsRemaining));
+                    bitsRemaining += 3;
                 }
             }
 
-            return result;
+            //if we didn't end with a full byte
+            if (arrayIndex != byteCount)
+            {
+                returnArray[arrayIndex] = curByte;
+            }
+
+            return returnArray;
         }
+
+        private static int CharToValue(char c)
+        {
+            int value = (int)c;
+
+            //65-90 == uppercase letters
+            if (value < 91 && value > 64)
+            {
+                return value - 65;
+            }
+            //50-55 == numbers 2-7
+            if (value < 56 && value > 49)
+            {
+                return value - 24;
+            }
+            //97-122 == lowercase letters
+            if (value < 123 && value > 96)
+            {
+                return value - 97;
+            }
+
+            throw new ArgumentException("Character is not a Base32 character.", "c");
+        }
+
     }
 }

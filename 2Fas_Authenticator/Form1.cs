@@ -21,7 +21,7 @@ namespace _2Fas_Authenticator
             InitializeComponent();
 
             textBoxSecretKey.Text = "ICJL VN3P 5DZI L47A GSH4 JRNC LEDN NMDZ";
-            textBoxSecretKey.Text = "12345678af";
+            //textBoxSecretKey.Text = "12345678af";
         }
 
         private void Form1_Load(object sender, EventArgs e)

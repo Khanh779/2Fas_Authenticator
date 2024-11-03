@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 
+using Stratum.Core.Util;
+
 namespace Stratum.Core.Generator
 {
     public class Totp : HmacOtp, IGenerator
@@ -24,10 +26,11 @@ namespace Stratum.Core.Generator
             var window = counter / period;
             var bytes = new byte[sizeof(long)];
 
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                bytes[bytes.Length - 1 - i] = (byte)(window >> (8 * i));
-            }
+            //for (int i = 0; i < bytes.Length; i++)
+            //{
+            //    bytes[bytes.Length - 1 - i] = (byte)(window >> (8 * i));
+            //}
+            BytesUtil.WriteInt64BigEndian(bytes, window);
 
             return bytes;
         }
